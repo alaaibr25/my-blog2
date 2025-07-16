@@ -1,0 +1,6 @@
+1- Navbar
+-turn nav-item to the left by adding "d-flex justify-content-end"
+-for background image use <div> with class "card-img-overlay".
+
+2-"static" folder for css files and images & "templates" for html files,
+3-In templates folder "base.html" to be the parent template.
