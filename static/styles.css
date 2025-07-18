@@ -2,11 +2,7 @@ body, html {width:100%;
             height:100%;
             margin:0;
             text-align:center;}
-h2{font-size:2rem;
-   font-weight:800; }
 
-hr{margin-top:50px;
-    width:100%;}
 .navbar{background-color: rgba(0, 0, 0, 0.1);
             --bs-navbar-color:white;
             --bs-navbar-brand-color:white;
@@ -15,6 +11,11 @@ hr{margin-top:50px;
             --bs-navbar-active-color:rgb(210, 210, 210);
             --bs-navbar-toggler-border-color:white;}
 
+h2{font-size:2rem;
+   font-weight:800; }
+
+hr{margin-top:50px;
+    width:100%;}
 .fl-hr{margin-top:100px;
         margin-bottom:50px;
         width:100%;}
@@ -46,10 +47,11 @@ hr{margin-top:50px;
         --bs-btn-hover-bg: #007189;
         --bs-btn-hover-border-color:#006a81;
         --bs-btn-font-weight: 500;
+ }
 
+.send-btn {margin-top:50px;
+            margin-right:900px;}
 
-
-           }
 .f-container{padding-bottom:100px;}
 .row{margin-left:420px;
     padding-bottom:10px;
@@ -82,9 +84,17 @@ p.about-body{line-height:2;
             --bs-navbar-hover-color:rgb(210, 210, 210);
             --bs-navbar-active-color:rgb(210, 210, 210);
             --bs-navbar-toggler-border-color:gray;}
-    a.navbar-brand{font-size:1.5rem;} 
-    ul.navbar-nav{text-align:left;}        
-        }
+    a.navbar-brand{font-size:1.5rem;}
+    ul.navbar-nav{text-align:left;}
+    .send-btn {margin-right:400px; }}
+
 
 
 .about-img{width:100%;height:500px;}
+
+/*📞💛contact.Html📞*/
+
+.form-control{border-style:none none solid none;
+               font-size:1.5rem;
+                padding-top:30px;
+                line-height:2;}
