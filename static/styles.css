@@ -75,6 +75,14 @@ p.about-body{line-height:2;
     .title{margin-top:20px;}
     .title h1 {font-size:3rem;}
     .about-body{margin-left:-20px; width:100%;}
+    .navbar{background-color: white;
+            --bs-navbar-color:gray;
+            --bs-navbar-brand-color:black;
+            --bs-navbar-brand-hover-color:rgb(210, 210, 210);
+            --bs-navbar-hover-color:rgb(210, 210, 210);
+            --bs-navbar-active-color:rgb(210, 210, 210);
+            --bs-navbar-toggler-border-color:gray;}
+    a.navbar-brand{font-size:1.5rem;}         
         }
 
 
