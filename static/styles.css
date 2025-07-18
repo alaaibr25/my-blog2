@@ -7,6 +7,14 @@ h2{font-size:2rem;
 
 hr{margin-top:50px;
     width:100%;}
+.navbar{background-color: rgba(0, 0, 0, 0.1);
+            --bs-navbar-color:white;
+            --bs-navbar-brand-color:white;
+            --bs-navbar-brand-hover-color:rgb(210, 210, 210);
+            --bs-navbar-hover-color:rgb(210, 210, 210);
+            --bs-navbar-active-color:rgb(210, 210, 210);
+            --bs-navbar-toggler-border-color:white;}
+
 .fl-hr{margin-top:100px;
         margin-bottom:50px;
         width:100%;}
