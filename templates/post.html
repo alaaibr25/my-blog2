@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %} post {% endblock %}
+{% block head %}{% endblock %}
+{% block image %} <img class="about-img" src="static/about.jpg"> {%endblock%}
+
+{% block content %}
+
+        <div class="title" >
+            <h1 style="font-weight:900;">{{req_post['title']}}</h1>
+        </div>
+
+    </div>
+    </div>
+
+<!-------------------------------    NAVBAR      ------------------------------->
+<!-------------------------------    NAVBAR      ------------------------------->
+
+<div class="sec2 d-flex  justify-content-center" >
+    <div>
+    <ul class="list-group list-group-flush">
+
+
+      <li class="list-group-item">
+
+          <p class="about-body">
+              {{req_post['body']}}
+          </p>
+
+      </li>
+
+
+
+    </ul>
+
+     </div>
+
+
+
+
+</div>
+
+
+<hr class="fl-hr">
+
+
+
+{% endblock %}
