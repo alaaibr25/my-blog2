@@ -26,7 +26,9 @@
        {% for post in all_posts:%}
       <li class="list-group-item">
 
-          <h2 class="card-title">{{post['title']}}</h2>
+            <a href="{{ url_for('post_page', indx=post['id']) }}">
+            <h2 class="card-title"> {{post['title']}}</h2>
+            </a>
           <h4 class="card-title">{{post['subtitle']}}</h4>
           <p style="color:gray;" class="card-title">Posted by Alaa on {{year}}</p>
 
