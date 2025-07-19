@@ -98,3 +98,6 @@ p.about-body{line-height:2;
                font-size:1.5rem;
                 padding-top:30px;
                 line-height:2;}
+li a {text-decoration-line: none;
+      color: black;  }
+li a:hover {color:gray;}
