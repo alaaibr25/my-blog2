@@ -8,7 +8,9 @@ year = dt.now().year
 
 blog_url = "https://api.npoint.io/{id}"
 response_blog = requests.get(blog_url).json()
-
+posts_list = []
+for post in response_blog:
+    posts_list.append(post)
 
 
 
@@ -25,6 +27,14 @@ def contact_page():
 @app.route('/about')
 def about_page():
     return render_template("about.html")
+
+@app.route('/<int:indx>')
+def post_page(indx):
+    requested_page = None
+    for p in posts_list:
+        if p['id'] == indx:
+            requested_page = p
+    return render_template("post.html", req_post=requested_page)
 
 
 
