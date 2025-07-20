@@ -26,8 +26,9 @@ def contact_page():
         nm = request.form['nm']
         mail = request.form['mail']
         phone = request.form['phone']
-        return f"<h1> {nm}-{mail}-{phone} </h1>"
-    return render_template("contact.html")
+                return render_template("contact.html", msg_sent=True)
+
+    return render_template("contact.html", msg_sent=False)
 
 @app.route('/about')
 def about_page():
