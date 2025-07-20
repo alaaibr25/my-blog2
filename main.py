@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from datetime import datetime as dt
 import requests
 
@@ -37,7 +37,13 @@ def post_page(indx):
     return render_template("post.html", req_post=requested_page)
 
 
+@app.route("/form-entry", methods=['POST'])
+def receive_data():
 
+    nm = request.form['nm']
+    mail = request.form['mail']
+    phone = request.form['phone']
+    return f"<h1> {nm}-{mail}-{phone} </h1>"
 
 
 
