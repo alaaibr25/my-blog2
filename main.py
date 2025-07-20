@@ -20,8 +20,13 @@ def main_page():
 
 
 
-@app.route('/contact')
+@app.route('/contact', methods=['POST', 'GET'])
 def contact_page():
+    if request.method == 'POST':
+        nm = request.form['nm']
+        mail = request.form['mail']
+        phone = request.form['phone']
+        return f"<h1> {nm}-{mail}-{phone} </h1>"
     return render_template("contact.html")
 
 @app.route('/about')
@@ -37,13 +42,7 @@ def post_page(indx):
     return render_template("post.html", req_post=requested_page)
 
 
-@app.route("/form-entry", methods=['POST'])
-def receive_data():
 
-    nm = request.form['nm']
-    mail = request.form['mail']
-    phone = request.form['phone']
-    return f"<h1> {nm}-{mail}-{phone} </h1>"
 
 
 
