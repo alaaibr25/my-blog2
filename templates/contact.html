@@ -23,12 +23,13 @@
         Want to get in touch? Fill out the form to send me a message and  i will
         get back to you as soon as possible!
     </p>
-        <input type="text" class="form-control"   placeholder="Name">
-        <input type="email" class="form-control"  placeholder="Email address">
-        <input type="text" class="form-control"  placeholder="Phone Number">
+        <form action="{{ url_for('receive_data') }}" method="POST">
+        <input type="text" class="form-control"  name="nm"  placeholder="Name">
+        <input type="email" class="form-control" name="mail"  placeholder="Email address">
+        <input type="text" class="form-control"  name="phone" placeholder="Phone Number">
        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Message"></textarea>
-        <button type="button" class="btn btn-lg btn-primary send-btn">SEND</button>
-
+        <button type="submit" class="btn btn-lg btn-primary send-btn">SEND</button>
+        </form>
      </div>
 
 
