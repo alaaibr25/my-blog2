@@ -2,11 +2,25 @@ from flask import Flask, render_template, request
 from datetime import datetime as dt
 import requests
 import smtplib
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SubmitField, validators
+from flask_bootstrap import Bootstrap4
+
+
 
 PW = "find ur App passwords"
 my_email = "mail"
 
 app = Flask(__name__)
+bootstrap = Bootstrap4(app)
+
+class MyForm(FlaskForm):
+    email = StringField('email', [validators.Length(min=6, max=120), validators.Email(message="@example.com", allow_empty_local=False)])
+    pw = PasswordField('Password', [validators.length(min=8)])
+    submit = SubmitField("Submit")
+
+app.secret_key = "SECRET"
+
 year = dt.now().year
 
 blog_url = "https://api.npoint.io/{id}"
@@ -51,6 +65,13 @@ def post_page(indx):
             requested_page = p
     return render_template("post.html", req_post=requested_page)
 
+
+@app.route('/log', methods=['POST', 'GET'])
+def login_page():
+    form = MyForm()
+    if form.validate_on_submit():
+        return "Success"
+    return render_template("login.html", form=form)
 
 
 
