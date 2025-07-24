@@ -1,6 +1,15 @@
 1- Navbar
--turn nav-item to the left by adding "d-flex justify-content-end"
+-Turn nav-item to the left by adding "d-flex justify-content-end"
 -for background image use <div> with class "card-img-overlay".
 
 2-"static" folder for css files and images & "templates" for html files,
-3-In templates folder "base.html" to be the parent template.
+3-In templates folder, "base.html" to be the parent template.
+4-import smtplib and search your app passwords in google
+5-Create requirements.txt by reading this doc. https://docs.google.com/document/d/e/2PACX-1vRIW_TuZ6z0ASjAoxgJgmzjGYLCDx019tKvphaTwK_Za7fnMKywUuXI0-s5wr0nQI_gprm6J6y7L9rL/pub.
+6- "login.html" to give all users field validation,
+We have to switch off the browser validation by 'novalidate'
+7-Displaying Errors, Crash Course at WTForms Docs.
+"https://wtforms.readthedocs.io/en/3.0.x/crash_course/#displaying-errors"
+"https://wtforms.readthedocs.io/en/3.0.x/validators/#module-wtforms.validators"
+
+
