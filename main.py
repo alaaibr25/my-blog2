@@ -57,11 +57,11 @@ def contact_page():
 def about_page():
     return render_template("about.html")
 
-@app.route('/<int:indx>')
-def post_page(indx):
+@app.route('/<int:post_id>')
+def post_page(post_id):
     requested_page = None
     for p in posts_list:
-        if p['id'] == indx:
+        if p['id'] == post_id:
             requested_page = p
     return render_template("post.html", req_post=requested_page)
 
@@ -91,3 +91,4 @@ def login_page():
 
 
 app.run()
+
