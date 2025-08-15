@@ -73,11 +73,22 @@ def main_page():
 
 @app.route('/new_post', methods=['POST', 'GET'])
 def create_post():
-    post_form = PostForm()
-    if post_form.validate_on_submit():
-        return "success"
+   pform = PostForm()
+    if pform.validate_on_submit():
+        nw_pst = BlogPost(
+                  title=pform.title.data,
+                  date=year,
+                  body=pform.body.data,
+                  author=pform.body.data,
+                  img_url=pform.img_url.data,
+                  subtitle=pform.subt.data
 
-    return render_template('make_post.html', form=post_form )
+        )
+        db.session.add(nw_pst)
+        db.session.commit()
+        return redirect(url_for('main_page'))
+
+    return render_template('make_post.html', form=pform )
 
 @app.route('/contact', methods=['POST', 'GET'])
 def contact_page():
