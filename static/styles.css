@@ -51,6 +51,9 @@ hr{margin-top:50px;
 
 .send-btn {margin-top:50px;
             margin-right:900px;}
+.update_btn{position:absolute;
+          bottom:100px;
+          right:60px;  }
 
 .f-container{padding-bottom:100px;}
 .row{margin-left:420px;
@@ -86,7 +89,8 @@ p.about-body{line-height:2;
             --bs-navbar-toggler-border-color:gray;}
     a.navbar-brand{font-size:1.5rem;}
     ul.navbar-nav{text-align:left;}
-    .send-btn {margin-right:400px; }}
+    .send-btn {margin-right:400px; }
+    .update_btn {bottom:5px;}}
 
 
 
@@ -101,3 +105,4 @@ p.about-body{line-height:2;
 li a {text-decoration-line: none;
       color: black;  }
 li a:hover {color:gray;}
+
