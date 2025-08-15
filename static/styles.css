@@ -74,7 +74,8 @@ p.about-body{line-height:2;
 /**🟧 make_post.html 🟧/**/
 
 .make-post{width:50%; margin-left:300px;}
-
+input.form-control{padding-top:0px;
+                   line-height:1; }
 
 /**🟧 make_post.html 🟧/**/
 
@@ -115,6 +116,7 @@ p.about-body{line-height:2;
 li a {text-decoration-line: none;
       color: black;  }
 li a:hover {color:gray;}
+
 
 
 
