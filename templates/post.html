@@ -35,7 +35,7 @@
      </div>
 
          <div >
-            <a href="#" type="button" class="btn btn-lg btn-primary update_btn">Edit Post </a>
+            <a href="{{ url_for('create_post', post_id=req_post['id'])}}" type="button" class="btn btn-lg btn-primary update_btn">Edit Post </a>
         </div>
 
 
