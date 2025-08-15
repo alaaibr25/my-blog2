@@ -71,6 +71,13 @@ p.about-body{line-height:2;
               font-weight:400;
               font-size:20px;  }
 
+/**🟧 make_post.html 🟧/**/
+
+.make-post{width:50%; margin-left:300px;}
+
+
+/**🟧 make_post.html 🟧/**/
+
 @media (max-width: 800px){
     .button {position:absolute;right:50px; top:700px;}
     .f-container{padding-left:100px;}
@@ -92,7 +99,8 @@ p.about-body{line-height:2;
     ul.navbar-nav{text-align:left;}
     .send-btn {margin-right:400px; }
     .update_btn {top:520px;right:30px;}
-    .contact_form{margin-left:0px; width:100%; }        }
+    .contact_form{margin-left:0px; width:100%; }
+    .make-post{width:70%; margin-left:50px;}}
 
 
 
@@ -107,6 +115,7 @@ p.about-body{line-height:2;
 li a {text-decoration-line: none;
       color: black;  }
 li a:hover {color:gray;}
+
 
 
 
