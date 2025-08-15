@@ -8,13 +8,15 @@ from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase
 from flask_sqlalchemy import SQLAlchemy
 import os
 import requests
+from flask_ckeditor import CKEditor, CKEditorField
 #🔽---------------------------------------------------------------🔽#
 year = dt.now().year
 
 app = Flask(__name__)
 bootstrap = Bootstrap5(app)
 app.secret_key = os.getenv("APIK")
-
+app.config['CKEDITOR_SERVE_LOCAL'] = True
+ckeditor = CKEditor(app)
 #🔽---------------------------------------------------------------🔽#
 #🟢# CREATE DATABASE, sqlalchemy
 
@@ -55,7 +57,7 @@ class PostForm(FlaskForm):
     subt = StringField('Subtitle', [validators.length(min=6, max=200)])
     author = StringField('Author', [validators.data_required()])
     img_url = URLField('Image URL')
-    body = StringField('body')
+    body = CKEditorField('Body')
     submit = SubmitField('Create')
 
 
