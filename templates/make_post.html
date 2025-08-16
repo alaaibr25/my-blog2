@@ -10,9 +10,13 @@
 
         {% block content %}
         <div class="title" >
+            {% if is_edit: %}
+            <h1 style="font-weight:900; ">Edit Post </h1>
+
+            {% else: %}
             <h1 style="font-weight:900; ">Create Your legend </h1>
             <h3 style="font-weight:100;">A collection of Alaa's random musings.</h3>
-
+            {%endif%}
         </div>
 
 
