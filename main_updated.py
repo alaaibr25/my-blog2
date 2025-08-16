@@ -90,6 +90,20 @@ def create_post():
 
     return render_template('make_post.html', form=pform )
 
+@app.route('/edit/<int:post_id>', methods=['POST', 'GET'])
+def edit_post(post_id):
+    post_to_edit = db.get_or_404(BlogPost, post_id)
+    edit_form = PostForm(
+                title=post_to_edit.title,
+                subt=post_to_edit.subtitle,
+                author=post_to_edit.author,
+                img_url=post_to_edit.img_url,
+                body=post_to_edit.body)
+
+
+    return render_template('make_post.html', form=edit_form, is_edit=True)
+
+
 @app.route('/contact', methods=['POST', 'GET'])
 def contact_page():
     if request.method == 'POST':
