@@ -30,7 +30,10 @@
             <h2 class="card-title"> {{post['title']}}</h2>
             </a>
           <h4 class="card-title">{{post['subtitle']}}</h4>
-          <p style="color:gray;" class="card-title">Posted by Alaa on {{year}}</p>
+          <div style="text-align: left;">
+              <p style="color:gray; display:inline;" class="card-title" >Posted by Alaa on {{year}}</p>
+           <a  href="{{ url_for('delete_post', post_id=post.id)}}">✖</a>
+          </div>
 
       </li>
         {%endfor%}
@@ -50,6 +53,7 @@
 
 <hr class="fl-hr">
 {% endblock %}
+
 
 
 
