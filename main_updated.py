@@ -90,7 +90,7 @@ def create_post():
 
     return render_template('make_post.html', form=pform )
 
-@app.route('/edit/<int:post_id>', methods=['POST', 'GET'])
+@app.route('/edit/<post_id>', methods=['GET', 'POST'])
 def edit_post(post_id):
     post_to_edit = db.get_or_404(BlogPost, post_id)
     edit_form = PostForm(
@@ -100,8 +100,23 @@ def edit_post(post_id):
                 img_url=post_to_edit.img_url,
                 body=post_to_edit.body)
 
+    if edit_form.validate_on_submit():
+        post_to_edit.title = edit_form.title.data
+        post_to_edit.body = edit_form.body.data
+        post_to_edit.author = edit_form.author.data
+        post_to_edit.img_url = edit_form.img_url.data
+        post_to_edit.subtitle = edit_form.subt.data
 
+        db.session.commit()
+        return redirect(url_for('post_page', post_id=post_to_edit.id))
     return render_template('make_post.html', form=edit_form, is_edit=True)
+
+@app.route('/delete/<int:post_id>')
+def delete_post(post_id):
+    post_to_delete = db.get_or_404(BlogPost, post_id)
+    db.session.delete(post_to_delete)
+    db.session.commit()
+    return redirect(url_for('main_page'))
 
 
 @app.route('/contact', methods=['POST', 'GET'])
