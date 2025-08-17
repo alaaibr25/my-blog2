@@ -6,9 +6,9 @@
 
    <div class="container text-center f-container">
         <div class="row" >
-            <div class="col-4"><img style="opacity:90%;width:50px;" src="static/email.png"></div>
-            <div class="col-4"><img style="opacity:90%;width:50px;" src="static/github.png"></div>
-            <div class="col-4"><img style="opacity:90%;width:50px;" src="static/linkedin.png"></div>
+           <div class="col-4"><img style="opacity:90%;width:50px;" src="{{ url_for('static', filename='email.png')}}"></div>
+            <div class="col-4"><img style="opacity:90%;width:50px;" src="{{ url_for('static', filename='github.png')}}"></div>
+            <div class="col-4"><img style="opacity:90%;width:50px;" src="{{ url_for('static', filename='linkedin.png')}}"></div>
 
         </div>
             <p class="cpy">Copyright © Alaa's Website 2025</p>
@@ -21,6 +21,7 @@
 <!-------------------------------         ------------------------------->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+
 
 
 </html>
