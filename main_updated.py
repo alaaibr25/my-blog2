@@ -69,7 +69,7 @@ class PostForm(FlaskForm):
 @app.route('/')
 def main_page():
     response_blog = db.session.execute(db.select(BlogPost).order_by(BlogPost.id)).scalars().all()
-    return render_template("index.html", year=year, all_posts=response_blog)
+    return render_template("index.html",  all_posts=response_blog)
 
 @app.route('/new_post', methods=['POST', 'GET'])
 def create_post():
