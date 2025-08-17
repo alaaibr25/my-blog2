@@ -4,7 +4,9 @@
 {% block head %}{% endblock %}
 
 {% block image %}
-        <img src="static/photo1.jpg" class="card-img " >
+<!--         <img src="static/photo1.jpg" class="card-img " > -->
+        <img src="{{ url_for('static', filename='photo1.jpg')}}" class="card-img">
+
 
 {%endblock%}
 
@@ -25,11 +27,12 @@
 <!-------------------------------    NAVBAR      ------------------------------->
 <!-------------------------------    NAVBAR      ------------------------------->
 
-{{ render_form(form, action='/new_post', method='POST',
+{{ render_form(form,
               extra_classes='my-5 text-start fs-5 fw-bold make-post form-control',
               button_size='btn btn-lg fs-5  fw-bold',
 
                ) }}
+{{ ckeditor.load() }}
 
 <hr class="fl-hr">
 {% endblock %}
