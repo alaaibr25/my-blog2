@@ -10,7 +10,7 @@ import os
 import requests
 from flask_ckeditor import CKEditor, CKEditorField
 #🔽---------------------------------------------------------------🔽#
-year = dt.now().year
+year = dt.now().date()
 
 app = Flask(__name__)
 bootstrap = Bootstrap5(app)
@@ -69,7 +69,7 @@ class PostForm(FlaskForm):
 @app.route('/')
 def main_page():
     response_blog = db.session.execute(db.select(BlogPost).order_by(BlogPost.id)).scalars().all()
-    return render_template("index.html", this_year=year, all_posts=response_blog)
+    return render_template("index.html", year=year, all_posts=response_blog)
 
 @app.route('/new_post', methods=['POST', 'GET'])
 def create_post():
