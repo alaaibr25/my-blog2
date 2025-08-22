@@ -3,22 +3,13 @@
 {% block head %}{% endblock %}
 
 {% block image %}
-        <img src="static/photo1.jpg" class="card-img " >
-
+    <div style="background-image: linear-gradient(to bottom right, Cyan, MediumOrchid);">
+        <img style="height:500px;" class="card-img " >
+    </div>
 {%endblock%}
 
-        {% block content %}
-        <div class="title" >
-            <h1 style="font-weight:900; ">Welcome to my Blog</h1>
-            <h3 style="font-weight:100;">A collection of Alaa's random musings.</h3>
-
-        </div>
-
-    </div>
-    </div>
-<!-------------------------------    NAVBAR      ------------------------------->
-<!-------------------------------    NAVBAR      ------------------------------->
-
+{% block content %}
+        
 
 
 <hr class="fl-hr">
