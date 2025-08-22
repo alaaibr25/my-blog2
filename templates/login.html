@@ -2,21 +2,14 @@
 {% extends "base.html" %}
 {% block title %} login {% endblock %}
 {% block head %}{% endblock %}
-{% block image %} <img class="about-img" src="..."> {%endblock%}
 
+{% block image %}
+    <div style="background-image: linear-gradient(to bottom right, blue, MediumOrchid);">
+        <img  style="height:500px" class="card-img " >
+    </div>
+{%endblock%}
 
 {% block content %}
-
- <div class="title" >
-            <h1 style="color:black;">Welcome</h1>
-
-        </div>
-
-    </div>
-    </div>
-<!-------------------------------    NAVBAR      ------------------------------->
-<!-------------------------------    NAVBAR      ------------------------------->
-
 <div class="sec2 " >
 
        {{render_form(form)}}
