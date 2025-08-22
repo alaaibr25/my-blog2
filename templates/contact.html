@@ -1,25 +1,20 @@
 {% extends "base.html "%}
  {% block head %}{% endblock %}
-{% block title %} about {% endblock %}
+
+ {% block title %}
+            {% if is_msg %}
+                SEND DONE
+            {% else %}
+                Contact Me
+            {% endif %}
+    {% endblock %}
+
 {% block image %} <img class="card-img " style="height:600px" src="static/conact.jpg"> {%endblock%}
+{% block subtitle %}  Have questions?? I have answers.{%endblock%}
 
 
 
 {% block content %}
- <div class="title" >
-             {% if msg_sent %}
-            <h1 style="font-weight:900;">SEND DONE</h1>
-            {% else %}
-            <h1 style="font-weight:900;">Contact Me</h1>
-            {% endif %}
-            <h3 style="font-weight:100;">Have questions?? I have answers.</h3>
-
-        </div>
-
-    </div>
-    </div>
-<!-------------------------------    NAVBAR      ------------------------------->
-<!-------------------------------    NAVBAR      ------------------------------->
 
 <div class="sec2" >
     <div>
@@ -44,6 +39,7 @@
 
 <hr class="fl-hr">
 {% endblock %}
+
 
 
 
