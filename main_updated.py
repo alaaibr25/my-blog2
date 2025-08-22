@@ -145,6 +145,14 @@ def login_page():
     if fform.validate_on_submit():
         return "Success"
     return render_template("login.html", form=fform)
+
+@app.route('/register', methods=['POST', 'GET'])
+def register():
+    return render_template('register.html')
+
+@app.route('/logout')
+def logout():
+    return redirect(url_for('main_page'))
 #
 app.run(debug=True)
 
