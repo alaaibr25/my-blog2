@@ -28,10 +28,10 @@
         get back to you as soon as possible!
     </p>
         <form action="{{ url_for('contact_page') }}" method="POST" class="w-50 contact_form">
-        <input type="text" class="form-control"  name="nm"  placeholder="Name">
-        <input type="email" class="form-control" name="mail"  placeholder="Email address">
-        <input type="text" class="form-control"  name="phone" placeholder="Phone Number">
-       <textarea class="form-control" name='msg' rows="3" placeholder="Message"></textarea>
+        <input type="text" class="form-control contact_items"  name="nm"  placeholder="Name">
+        <input type="email" class="form-control contact_items" name="mail"  placeholder="Email address">
+        <input type="text" class="form-control contact_items"  name="phone" placeholder="Phone Number">
+       <textarea class="form-control contact_items" name='msg' rows="3" placeholder="Message"></textarea>
         <button type="submit" class="btn btn-lg btn-primary send-btn">SEND</button>
         </form>
      </div>
@@ -44,5 +44,6 @@
 
 <hr class="fl-hr">
 {% endblock %}
+
 
 
