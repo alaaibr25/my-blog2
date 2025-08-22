@@ -47,9 +47,9 @@ with app.app_context():
 #🔽---------------------------------------------------------------🔽#
 #🔽---------------------------------------------------------------🔽#
 class MyForm(FlaskForm):
-    email = StringField('email', [validators.Length(min=6, max=120),
+    email = StringField('', [validators.Length(min=6, max=120),
                                   validators.Email(message="@example.com", allow_empty_local=False)])
-    pw = PasswordField('Password', [validators.length(min=8)])
+    pw = PasswordField('', [validators.length(min=8)])
     submit = SubmitField("Submit")
 
 class PostForm(FlaskForm):
