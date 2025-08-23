@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% from 'bootstrap5/form.html' import render_field %}
+
     {% block title %} Register {% endblock %}
 {% block head %}{% endblock %}
 
@@ -9,6 +11,18 @@
 {%endblock%}
 
 {% block content %}
+    <div class="sec2 ">
+
+        <div class="log-form">
+            <form method="post" >
+            {{render_field(form.name, placeholder='Full Name' )}}
+            {{render_field(form.email, placeholder='Email Address' )}}
+            {{render_field(form.pw, placeholder='Password' )}}
+            {{render_field(form.submit )}}
+             </form>
+        </div>
+
+    </div>
         
 
 
