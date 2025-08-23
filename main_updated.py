@@ -1,7 +1,8 @@
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, flash, jsonify, render_template, request
 from datetime import datetime as dt
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, validators, URLField
+from wtforms.validators import DataRequired
 from flask_bootstrap import Bootstrap5
 from sqlalchemy import Integer, String
 from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase
@@ -9,6 +10,8 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 import requests
 from flask_ckeditor import CKEditor, CKEditorField
+from flask_login import LoginManager, UserMixin, login_user
+from werkzeug.security import generate_password_hash
 #🔽---------------------------------------------------------------🔽#
 year = dt.now().date()
 
@@ -17,6 +20,13 @@ bootstrap = Bootstrap5(app)
 app.secret_key = os.getenv("APIK")
 app.config['CKEDITOR_SERVE_LOCAL'] = True
 ckeditor = CKEditor(app)
+#🔽---------------------------------------------------------------🔽#
+log_manager = LoginManager()
+log_manager.init_app(app)
+
+@log_manager.user_loader
+def load_user(user_id):
+    return db.get_or_404(UserData, user_id)
 #🔽---------------------------------------------------------------🔽#
 #🟢# CREATE DATABASE, sqlalchemy
 
@@ -39,6 +49,15 @@ class BlogPost(db.Model):
 
     def to_dict(self):
         return {col.name: getattr(self, col.name) for col in self.__table__.columns}
+        
+class UserData(UserMixin, db.Model):
+
+    __tablename__ = "users"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str] = mapped_column(nullable=False)
+    email: Mapped[str] = mapped_column(nullable=False)
+    pswrd: Mapped[str] = mapped_column(nullable=False)
 
 
 with app.app_context():
@@ -156,6 +175,18 @@ def login_page():
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
+        hashed_pw = generate_password_hash(form.pw.data,
+                                        method='pbkdf2:sha256:600000',
+                                        salt_length=8)
+        new_user = UserData()
+        new_user.name = form.name.data
+        new_user.email = form.email.data
+        new_user.pswrd = hashed_pw
+
+        db.session.add(new_user)
+        db.session.commit()
+
+        login_user(new_user)
         return redirect(url_for('main_page'))
     return render_template('register.html', form=form)
 
