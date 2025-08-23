@@ -37,7 +37,7 @@ hr{margin-top:50px;
 
 .button{margin-left:100px;}
 
-.btn  { --bs-btn-border-radius:0px;
+.btn  { --bs-btn-border-radius:6px;
         --bs-btn-bg:#0085A1;
         --bs-btn-border-color: #0085A1;
         --bs-btn-hover-bg: #007189;
@@ -75,6 +75,15 @@ input.form-control{padding-top:0px;
 
 /**🟧 make_post.html 🟧/**/
 
+/*🟠login.html🟠*/
+.log-form{width:50%;
+          margin-left:240px;
+          text-align:left;
+
+}
+
+/*🟠login.html🟠*/
+
 @media (max-width: 800px){
     
     .f-container{padding-left:100px;}
@@ -97,7 +106,9 @@ input.form-control{padding-top:0px;
     .send-btn {margin-right:400px; }
     .update_btn {top:520px;right:30px;}
     .contact_form{margin-left:0px; width:100%; }
-    .make-post{width:70%; margin-left:50px;}}
+    .make-post{width:70%; margin-left:50px;}
+    .log-form{width:100%;margin-left:0px;}        
+            }
 
 
 
@@ -112,6 +123,7 @@ input.form-control{padding-top:0px;
 li a {text-decoration-line: none;
       color: black;  }
 li a:hover {color:gray;}
+
 
 
 
