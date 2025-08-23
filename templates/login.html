@@ -11,8 +11,14 @@
 
 {% block content %}
 <div class="sec2 " >
-
-       {{render_form(form)}}
+      <div class="log-form">
+            <form method="post">
+               {{render_field(form.email, placeholder='Email Address' )}}
+               {{render_field(form.pw, placeholder='Password' )}}
+               {{render_field(form.submit )}}
+            </form>
+       </div>
+       
 
 </div>
 
