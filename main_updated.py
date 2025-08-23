@@ -51,7 +51,13 @@ class MyForm(FlaskForm):
                                   validators.Email(message="@example.com", allow_empty_local=False)])
     pw = PasswordField('', [validators.length(min=8)])
     submit = SubmitField("Submit")
-
+    
+class RegisterForm(FlaskForm):
+    name = StringField('', [validators.Length(min=6, max=120)])
+    email = EmailField('', [validators.Length(min=6, max=120)])
+    pw = PasswordField('', [validators.Length(min=6, max=120)])
+    submit = SubmitField("Register")
+    
 class PostForm(FlaskForm):
     title = StringField('title', [validators.length(min=6, max=120)])
     subt = StringField('Subtitle', [validators.length(min=6, max=200)])
@@ -148,7 +154,10 @@ def login_page():
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
-    return render_template('register.html')
+    form = RegisterForm()
+    if form.validate_on_submit():
+        return redirect(url_for('main_page'))
+    return render_template('register.html', form=form)
 
 @app.route('/logout')
 def logout():
