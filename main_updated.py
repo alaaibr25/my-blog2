@@ -10,7 +10,7 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 import requests
 from flask_ckeditor import CKEditor, CKEditorField
-from flask_login import LoginManager, UserMixin, login_user
+from flask_login import LoginManager, logout_user, login_required, current_user, UserMixin, login_user
 from werkzeug.security import generate_password_hash, check_password_hash
 #🔽---------------------------------------------------------------🔽#
 year = dt.now().date()
@@ -93,9 +93,10 @@ class PostForm(FlaskForm):
 @app.route('/')
 def main_page():
     response_blog = db.session.execute(db.select(BlogPost).order_by(BlogPost.id)).scalars().all()
-    return render_template("index.html",  all_posts=response_blog)
+    return render_template("index.html",  all_posts=response_blog, is_logged=current_user)
 
 @app.route('/new_post', methods=['POST', 'GET'])
+@login_required
 def create_post():
    pform = PostForm()
     if pform.validate_on_submit():
@@ -112,9 +113,10 @@ def create_post():
         db.session.commit()
         return redirect(url_for('main_page'))
 
-    return render_template('make_post.html', form=pform )
+    return render_template('make_post.html', form=pform, is_logged=current_user.is_authenticated )
 
 @app.route('/edit/<post_id>', methods=['GET', 'POST'])
+@login_required
 def edit_post(post_id):
     post_to_edit = db.get_or_404(BlogPost, post_id)
     edit_form = PostForm(
@@ -133,14 +135,14 @@ def edit_post(post_id):
 
         db.session.commit()
         return redirect(url_for('post_page', post_id=post_to_edit.id))
-    return render_template('make_post.html', form=edit_form, is_edit=True)
+    return render_template('make_post.html', form=edit_form, is_edit=True, is_logged=current_user.is_authenticated)
 
 @app.route('/delete/<int:post_id>')
 def delete_post(post_id):
     post_to_delete = db.get_or_404(BlogPost, post_id)
     db.session.delete(post_to_delete)
     db.session.commit()
-    return redirect(url_for('main_page'))
+    return redirect(url_for('main_page', is_logged=current_user.is_authenticated))
 
 
 @app.route('/contact', methods=['POST', 'GET'])
@@ -178,7 +180,7 @@ def login_page():
         flash("This Email doesn't exist", "error")
         return redirect(url_for('login_page'))
        
-    return render_template("login.html", form=form)
+    return render_template("login.html", form=form, is_logged=current_user.is_authenticated)
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
@@ -202,10 +204,11 @@ def register():
     
             login_user(new_user)
             return redirect(url_for('main_page'))
-    return render_template('register.html', form=form)
+    return render_template('register.html', form=form, is_logged=current_user.is_authenticated)
 
 @app.route('/logout')
 def logout():
+    logout_user()
     return redirect(url_for('main_page'))
 #
 app.run(debug=True)
