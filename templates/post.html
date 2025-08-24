@@ -1,19 +1,14 @@
 {% extends "base.html" %}
-{% block title %} post {% endblock %}
+{% block title %} {{req_post['title']}} {% endblock %}
 {% block head %}{% endblock %}
-{% block image %} <img class="about-img" src="static/about.jpg"> {%endblock%}
-
-{% block content %}
-
-        <div class="title" >
-            <h1 style="font-weight:900;">{{req_post['title']}}</h1>
+{% block image %}
+        <div style="background-image: linear-gradient(to bottom right, MediumSpringGreen, DarkGreen);">
+            <img class="about-img" style="height:500px;">
         </div>
 
-    </div>
-    </div>
+{%endblock%}
 
-<!-------------------------------    NAVBAR      ------------------------------->
-<!-------------------------------    NAVBAR      ------------------------------->
+{% block content %}
 
 <div class="sec2 d-flex  justify-content-center" >
     <div>
