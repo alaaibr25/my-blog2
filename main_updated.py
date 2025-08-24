@@ -104,7 +104,7 @@ def create_post():
                   title=pform.title.data,
                   date=year,
                   body=pform.body.data,
-                  author=pform.body.data,
+                  author=current_user,
                   img_url=pform.img_url.data,
                   subtitle=pform.subt.data
 
@@ -129,7 +129,7 @@ def edit_post(post_id):
     if edit_form.validate_on_submit():
         post_to_edit.title = edit_form.title.data
         post_to_edit.body = edit_form.body.data
-        post_to_edit.author = edit_form.author.data
+        post_to_edit.author = current_user
         post_to_edit.img_url = edit_form.img_url.data
         post_to_edit.subtitle = edit_form.subt.data
 
