@@ -40,7 +40,7 @@
                     <li class="nav-item">
                       <a class="nav-link" href="/about">About</a>
                     </li>
-                      {% if is_logged %}
+                      {% if not current_user.is_authenticated %}
                        <li class="nav-item">
                       <a class="nav-link" href="/log">Log in</a>
                      </li>
@@ -77,6 +77,7 @@
 </body>
 
 {% include 'footer.html' %}
+
 
 
 
