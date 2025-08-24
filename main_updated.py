@@ -11,7 +11,7 @@ import os
 import requests
 from flask_ckeditor import CKEditor, CKEditorField
 from flask_login import LoginManager, UserMixin, login_user
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 #🔽---------------------------------------------------------------🔽#
 year = dt.now().date()
 
@@ -66,9 +66,8 @@ with app.app_context():
 #🔽---------------------------------------------------------------🔽#
 #🔽---------------------------------------------------------------🔽#
 class MyForm(FlaskForm):
-    email = StringField('', [validators.Length(min=6, max=120),
-                                  validators.Email(message="@example.com", allow_empty_local=False)])
-    pw = PasswordField('', [validators.length(min=8)])
+    email = StringField('', validators=[DataRequired()])
+    pw = PasswordField('', validators=[DataRequired()])
     submit = SubmitField("Submit")
     
 class RegisterForm(FlaskForm):
@@ -166,28 +165,43 @@ def post_page(post_id):
 
 @app.route('/log', methods=['POST', 'GET'])
 def login_page():
-    fform = MyForm()
-    if fform.validate_on_submit():
-        return "Success"
-    return render_template("login.html", form=fform)
+    form = MyForm()
+    if form.validate_on_submit():
+        query_user = db.session.execute(db.select(UserData).where(UserData.email == form.email.data)).scalar()
+        if query_user:
+            if check_password_hash(query_user.pswrd, form.pw.data):
+                login_user(query_user)
+                return redirect(url_for('main_page'))
+            else:
+                flash("Invalid password", 'error')
+                return redirect(url_for('login_page'))
+        flash("This Email doesn't exist", "error")
+        return redirect(url_for('login_page'))
+       
+    return render_template("login.html", form=form)
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        hashed_pw = generate_password_hash(form.pw.data,
-                                        method='pbkdf2:sha256:600000',
-                                        salt_length=8)
-        new_user = UserData()
-        new_user.name = form.name.data
-        new_user.email = form.email.data
-        new_user.pswrd = hashed_pw
-
-        db.session.add(new_user)
-        db.session.commit()
-
-        login_user(new_user)
-        return redirect(url_for('main_page'))
+        query_user = db.session.execute(db.select(UserData).where(UserData.email == form.email.data)).scalar()
+        if query_user:
+            flash("This Email is already Exist. Log in instead!")
+            return redirect(url_for('login_page'))
+        else:
+            hashed_pw = generate_password_hash(form.pw.data,
+                                            method='pbkdf2:sha256:600000',
+                                            salt_length=8)
+            new_user = UserData()
+            new_user.name = form.name.data
+            new_user.email = form.email.data
+            new_user.pswrd = hashed_pw
+    
+            db.session.add(new_user)
+            db.session.commit()
+    
+            login_user(new_user)
+            return redirect(url_for('main_page'))
     return render_template('register.html', form=form)
 
 @app.route('/logout')
