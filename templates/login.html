@@ -1,4 +1,4 @@
-{% from 'bootstrap4/form.html' import render_field %}
+{% from 'bootstrap4/form.html' import render_field, render_hidden_errors %}
 {% extends "base.html" %}
 {% block title %} login {% endblock %}
 {% block head %}{% endblock %}
@@ -13,6 +13,18 @@
 <div class="sec2 " >
       <div class="log-form">
             <form method="post">
+
+                      {% with msgs = get_flashed_messages() %}
+                    {% if msgs %}
+                    {% for msg in msgs %}
+                    <p style="color:red;">{{msg}}</p>
+                    {%endfor%}
+                    {%endif%}
+                    {%endwith%}
+
+             {{render_hidden_errors(form)}}
+            {{ form.csrf_token() }}
+                
                {{render_field(form.email, placeholder='Email Address' )}}
                {{render_field(form.pw, placeholder='Password' )}}
                {{render_field(form.submit )}}
