@@ -1,4 +1,4 @@
-from flask import Flask, flash, jsonify, render_template, request
+from flask import Flask, flash, abort, jsonify, render_template, request
 from datetime import datetime as dt
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, validators, URLField
@@ -87,6 +87,21 @@ class PostForm(FlaskForm):
 
 
 #🔽---------------------------------------------------------------🔽#
+from functools import wraps
+
+def admin_only(func):
+    @wraps(func)
+    def decorated_func(*args, **kwargs):
+        if current_user.is_anonymous:
+            return abort(406, "I dont know you piece of shit.")
+        elif current_user.id != 4:
+            return abort(403, "You can't be here!")
+
+        return func(*args, **kwargs)
+
+    return decorated_func
+
+#🔽---------------------------------------------------------------🔽#
 
 
 
@@ -96,7 +111,7 @@ def main_page():
     return render_template("index.html",  all_posts=response_blog, current_user=current_user)
 
 @app.route('/new_post', methods=['POST', 'GET'])
-@login_required
+@admin_only
 def create_post():
    pform = PostForm()
     if pform.validate_on_submit():
@@ -138,6 +153,7 @@ def edit_post(post_id):
     return render_template('make_post.html', form=edit_form, is_edit=True, current_user=current_user)
 
 @app.route('/delete/<int:post_id>')
+@admin_only
 def delete_post(post_id):
     post_to_delete = db.get_or_404(BlogPost, post_id)
     db.session.delete(post_to_delete)
